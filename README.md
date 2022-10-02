@@ -14,12 +14,14 @@ python3 install pipenv
 pipenv install
 ```
 
-### Running Server```
+### Running Server
+```
 
 python manage.py runserver
 ```
 
-### Create migrations```
+### Create migrations
+```
 
 python manage.py makemigrations
 
