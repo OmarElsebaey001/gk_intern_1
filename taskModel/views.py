@@ -7,25 +7,24 @@ from rest_framework import status
 from rest_framework.viewsets import ModelViewSet
 
 
-# @api_view()
-# def getModels(request):
-#     allmodels=models.Model.objects.all()
-#     serialized=serializers.ModelSerializer(allmodels,many=True)
-#     return Response(serialized.data,status=status.HTTP_200_OK)
-
-
-
-# @api_view()
-# def getVersions(request):
-#     allVersions=models.Versions.objects.all()
-#     serialized=serializers.VersionsSerializer(allVersions,many=True)
-#     return Response(serialized.data,status=status.HTTP_200_OK)
-
 
 class ModelsViewSet(ModelViewSet):
     serializer_class=serializers.ModelSerializer
     queryset=models.Model.objects.all()
+    lookup_field='id'
+
 
 class VersionsViewSet(ModelViewSet):
     serializer_class=serializers.VersionsSerializer
-    queryset=models.Versions.objects.all()
+    queryset=models.Versions.objects.prefetch_related('allocation_item').all()
+    lookup_field='id'
+
+
+class AllocationItemViewSet(ModelViewSet):
+    serializer_class=serializers.AllocationItemSerializer
+    lookup_field='id'
+    def get_queryset(self):
+        return models.AllocationItem.objects.filter(version=self.kwargs['version_id']).all()
+
+    def get_serializer_context(self):
+        return {'version_id':self.kwargs['version_id']}

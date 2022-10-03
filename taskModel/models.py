@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator,MaxValueValidator
 # Create your models here.
 
 
@@ -18,3 +18,15 @@ class Versions(models.Model):
         )
     portfolioVersion=models.IntegerField()
 
+
+
+class AllocationItem(models.Model):
+    def minVal(x:int)->int:
+        if (x<=0):
+            raise Exception('Allocation Weight has to be greater than 0')
+        return x
+
+    weight=models.DecimalField(max_digits=8,
+        decimal_places=3,
+        validators=[minVal,MaxValueValidator(100)])
+    version=models.ForeignKey(Versions,on_delete=models.CASCADE,related_name='allocation_item')
