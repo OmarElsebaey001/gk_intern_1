@@ -5,12 +5,19 @@ from typing import Callable
 
 
 class Data:
-    def __init__(self,pdf:str,password:str='',dataFrameColumns:list=[]) -> None:
+    def __init__(self,pdf:str,password:str='') -> None:
         self.pdf=pdfplumber.open(pdf,password=password)
-        self.columns=dataFrameColumns
+
+    __columns=['Order No.','OrderTime','TradeNo.','TradeTime',
+            'Company Name','Buy(B) /Sell(S)','Quantity','Gross Rate/trade price per Unit(Rs)'
+            ,'Brokerage perUnit','NetRate perUnit(Rs)','ClosingRatePerUnit(Rs)'
+            ,'NetTotal(BeforeLevies)(Rs.)','remark','Contract No','TradeDate',
+            'Trading','UCC','Name'
+            ,'ISIN',
+            ]
 
     def getColumns(self)->list:
-        return self.columns
+        return self.__columns
 
     def getPages(self)->list:
         return self.pdf.pages

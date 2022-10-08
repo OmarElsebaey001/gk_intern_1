@@ -10,16 +10,17 @@ class MetaDataExtractor(Data):
     __regex={
     'ContractRegex':'Contract Note No.\s[0-9]+',
     'TradeDateRegex':'Trade Date\s[0-9-a-z]+',
-    'UCCRegex':'Trading & UCC\s[0-9]+\s[&]\s[0-9]+',
-    'NameRegex':'Name\s[A-Z]+[\s]+[A-Z]+'
+    'Trading':'Trading & UCC\s[0-9]+\s',
+    'UCC':'[&]\s[0-9]+',
+    'NameRegex':'Name\s[A-Z]+[\s]+[A-Z]+',
     }
 
     __replaceUseless=lambda _,target:target.replace('Contract Note No.',"") \
         .replace('Trade Date', "")\
-        .replace('Trading & UCC', "").replace('Name','')
+        .replace('Trading & UCC', "").replace('Name','').replace('&','')
 
-    def __init__(self,pdf:str,password:str='',dataFrameColumns:list=[]) -> None:
-        super().__init__(pdf,password,dataFrameColumns)
+    def __init__(self,pdf:str,password:str='') -> None:
+        super().__init__(pdf,password)
 
     def __mergeData(self,extractedText:str,finalResult:list)->None:
         temp=[]

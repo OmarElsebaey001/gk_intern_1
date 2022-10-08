@@ -6,7 +6,8 @@ from re import findall
 class TableData(MetaDataExtractor):
 
     __filterationRegex='[A-Z\s?]+'
-    __ISINRegex="[A-Z]+[0-9]+[A-Z]+[0-9]+"
+    __ISINRegex="[A-Z]+[0-9]+[A-Z]+[0-9]+[.]?[0-9]+"
+    __ISINRegexType2='[-]+[A-Z]+[-]?[0-9]+'
     def __isData(self,arr:list)->bool:
         if len(arr)<4 or not arr[2]:
             return False
@@ -22,7 +23,12 @@ class TableData(MetaDataExtractor):
         return findall(self.__filterationRegex,target)
 
     def __filterISIN(self,target:str)->list:
-        return findall(self.__ISINRegex,target)
+        res=findall(self.__ISINRegex,target)
+        if len(res)==0:
+            res=findall(self.__ISINRegexType2,target)
+        if len(res)==0:
+            return [target]
+        return res
 
     def __createOrganizedDf(self,pages:list=[])-> pd.DataFrame:
         rows=[]
@@ -36,4 +42,5 @@ class TableData(MetaDataExtractor):
         return df
 
     def extractData(self)->pd.DataFrame:
-        return super().useTables(self.__createOrganizedDf)
+        return super().useTables(self.__createOrganizedDf).drop(['remark','ClosingRatePerUnit(Rs)'],axis=1)\
+        .replace(r'\n',' ', regex=True)
