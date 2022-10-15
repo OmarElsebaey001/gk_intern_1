@@ -6,7 +6,8 @@ from rest_framework_nested.routers import DefaultRouter,NestedDefaultRouter
 
 router=DefaultRouter()
 router.register('models',views.ModelsViewSet)
-router.register('versions',views.VersionsViewSet)
+router.register('portfolios',views.PortfolioViewSet)
+router.register('versions',views.VersionsViewSet,basename='versions')
 versionsRouter=NestedDefaultRouter(router,'versions',lookup='version')  # lookup-> versions_id,versions_name
 versionsRouter.register('allocation_items',views.AllocationItemViewSet,basename='versions-allocationItems')
 
