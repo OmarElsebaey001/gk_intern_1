@@ -19,8 +19,8 @@ class MetaDataExtractor(Data):
         .replace('Trade Date', "")\
         .replace('Trading & UCC', "").replace('Name','').replace('&','')
 
-    def __init__(self,pdf:str,password:str='') -> None:
-        super().__init__(pdf,password)
+    def __init__(self,pdf:str) -> None:
+        super().__init__(pdf)
 
     def __mergeData(self,extractedText:str,finalResult:list)->None:
         temp=[]

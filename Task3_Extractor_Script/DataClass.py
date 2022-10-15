@@ -5,8 +5,8 @@ from typing import Callable
 
 
 class Data:
-    def __init__(self,pdf:str,password:str='') -> None:
-        self.pdf=pdfplumber.open(pdf,password=password)
+    def __init__(self,pdf:str) -> None:
+        self.pdf=pdfplumber.open(pdf)
 
     __columns=['Order No.','OrderTime','TradeNo.','TradeTime',
             'Company Name','Buy(B) /Sell(S)','Quantity','Gross Rate/trade price per Unit(Rs)'

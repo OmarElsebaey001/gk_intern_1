@@ -17,7 +17,7 @@ class TableData(MetaDataExtractor):
             res=True
         except :
             return False
-        return arr[0].isdigit() and len(arr[0])>=8 and res
+        return arr[0].isdigit() and res
 
     def __filterCompanyName(self,target:str)->list:
         return findall(self.__filterationRegex,target)
