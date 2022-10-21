@@ -1,3 +1,4 @@
+from dataclasses import fields
 from rest_framework import serializers
 from . import models
 from drf_writable_nested.serializers import WritableNestedModelSerializer
@@ -22,14 +23,16 @@ class VersionsSerializer(WritableNestedModelSerializer):
         model=models.Versions
         fields=['id','name','created_on','allocation_item','model']
 
-
-class ModelSerializer(serializers.ModelSerializer):
-    version=VersionsSerializer(many=True,required=False)
-
+class TagsSerializer(serializers.ModelSerializer):
 
     class Meta:
+        fields=['name','model']
+class ModelSerializer(serializers.ModelSerializer):
+    version=VersionsSerializer(many=True,required=False)
+    tags=TagsSerializer(many=True)
+    class Meta:
         model=models.Model
-        fields=['id','model_name','followers','version']
+        fields=['id','model_name','followers','version','tags']
 
 class PortfolioSerializer(serializers.ModelSerializer):
     class Meta:

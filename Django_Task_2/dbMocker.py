@@ -10,11 +10,7 @@ django.setup()
 from taskModel import models
 
 
-
-def populateModels():
-    for i in range(30,40):
-        models.Model.objects.create(model_name=f'model{i}')
-
+populateModels=lambda :[models.Model.objects.create(model_name=f'model{i}') for i in range(30,40)]
 
 if  __name__=='__main__':
     populateModels()

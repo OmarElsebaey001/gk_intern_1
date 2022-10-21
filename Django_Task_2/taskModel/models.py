@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator,MaxValueValidator
+
+from content.tagsChoices import TAGS_CHOICES
 # Create your models here.
 
 
@@ -39,3 +41,8 @@ class PortfolioAllocations(models.Model):
         decimal_places=3,
         validators=[MinValueValidator(0)])
     portfolio=models.ForeignKey(Portfolio,on_delete=models.CASCADE,related_name='portfolio_allocations')
+
+
+class Tags(models.Model):
+    name=models.CharField(choices=TAGS_CHOICES,max_length=255)
+    model=models.ForeignKey(Model,on_delete=models.CASCADE,related_name='tags')

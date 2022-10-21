@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'taskModel',
     'rest_framework',
-    'debug_toolbar'
+    'debug_toolbar',
+    'multiselectfield',
 ]
 
 MIDDLEWARE = [
