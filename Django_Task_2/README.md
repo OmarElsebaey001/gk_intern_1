@@ -1,33 +1,7 @@
-## Task 2
+## Getting started
 
-This task's goal is to create an api that can create,get,update,and delete models and versions.
 
-## Getting Started
+### To start run the follwing in the Task4_Extractor_Script directory:
 
-### Initializing virtual environment
+```csh -f setup.csh
 ```
-python3 install pipenv
-```
-
-### Installing Dependencies
-```
-pipenv install
-```
-
-### Running Server
-```
-
-python manage.py runserver
-```
-
-### Create migrations
-```
-
-python manage.py makemigrations
-
-python manage.py migrate
-```
-
-### Mock the data
-
-To generate mock data easily you could use this [tool](https://www.mockaroo.com/)
