@@ -28,13 +28,10 @@ def getMetaData(pdf):
 
     # extraction operation
     for i in reader.pages:
-        ans={}
         for key,v in patterns.items():
             t=re.findall(v,i.extract_text(),re.IGNORECASE)
             if len(t)>0 and len(finalResult)!=5:
-                # finalResult+=[removeOutliers(t[0])]
-                ans[key]=removeOutliers(t[0])
-        for k,_ in patterns.items():
-            finalResult+=ans[k]
+                finalResult+=[removeOutliers(t[0])]
+                # ans[key]=removeOutliers(t[0])
 
     return finalResult

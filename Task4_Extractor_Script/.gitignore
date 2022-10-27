@@ -1,5 +1,3 @@
-/bin/*
-/include/*
-/lib/*
-/pyvenv.cfg
 /share
+/v0
+/result.csv
