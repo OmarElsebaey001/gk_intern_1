@@ -1,5 +1,2 @@
-/bin/*
-/include/*
-/lib/*
-/pyvenv.cfg
-/venv
+/v0
+/taskModel/migrations
