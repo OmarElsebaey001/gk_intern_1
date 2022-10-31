@@ -25,7 +25,7 @@ dfColumns=['Order No.','OrderTime','TradeNo.','TradeTime',
             'Brokerage perUnit','NetRate perUnit(Rs)',
             'NetTotal(BeforeLevies)(Rs.)','Symbol','ISIN',
             'Company Name','Average Total(BeforeLevies)(Rs.)',
-            'Total Buy','Total Sell','Name','ucc','pan','date','contNo','file'
+            'Name','ucc','pan','date','contNo','file'
             ]
 
 pd.DataFrame(main,columns=dfColumns).to_csv('result.csv',index=False)

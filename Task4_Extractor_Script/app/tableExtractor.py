@@ -53,7 +53,7 @@ findBuySell=lambda arr:[i for i in arr if i is not None and re.findall(BuySellRe
 
 
 
-def turnToRows(targetList:list)->list[list]:
+def turnToRows(targetList:list)->list:
     targetList.pop(4)
     cleaned=[]
     if len(targetList[1].split('\n'))==1:
@@ -109,23 +109,23 @@ def getTableData(pdf):
             # print(*mappedArray,sep='\n')
             for j in mappedArray:
                 multiTemp.append(j)
-        elif len(buySell)>0:
-            # if len(temp)==14:
-            #     if temp[4]=="B":
-            #         temp+=[buySell[0],None]
-            #     else:
-            #         temp+=[None,buySell[0]]
-            # else:
-            for i in multiTemp:
-                if i[4]=="B":
-                    i+=[buySell[0],None]
-                else:
-                    i+=[None,buySell[0]]
+        # elif len(buySell)>0:
+        #     # if len(temp)==14:
+        #     #     if temp[4]=="B":
+        #     #         temp+=[buySell[0],None]
+        #     #     else:
+        #     #         temp+=[None,buySell[0]]
+        #     # else:
+        #     for i in multiTemp:
+        #         if i[4]=="B":
+        #             i+=[buySell[0],None]
+        #         else:
+        #             i+=[None,buySell[0]]
         # print(*multiTemp,sep='\n')
         # if len(temp)==16:
         #     rows.append(temp)
         #     temp=[]
-        if len(multiTemp)>0 and len(multiTemp[0])==16:
+        if len(multiTemp)>0 and len(multiTemp[0])==14:
             for i in multiTemp:
                 rows.append(i)
             multiTemp=[]
