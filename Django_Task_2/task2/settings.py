@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'taskModel',
     'rest_framework',
     'debug_toolbar',
-    'multiselectfield',
 ]
 
 MIDDLEWARE = [
